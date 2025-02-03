@@ -1,0 +1,342 @@
+.dashboard_container {
+    min-height: 100vh;
+    display: flex;
+    background-color: #f9fafb;
+  }
+  
+  .sidebar {
+    width: 256px;
+    border-right: 1px solid #e5e7eb;
+    background-color: white;
+  }
+  
+  .sidebar_content {
+    padding: 1rem;
+  }
+  
+  .dashboard_button {
+    background-color: #EF4444;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+    font-family: Quicksand;
+    font-weight: 600;
+  }
+  
+  .sidebar_nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .nav_link {
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem;
+    color: #374151;
+    background: none;
+    border: none;
+    border-radius: 0.375rem;
+    font-family: Quicksand;
+    cursor: pointer;
+  }
+  
+  .nav_link:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .main_content {
+    flex: 1;
+    padding: 2rem;
+  }
+  
+  .page_title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-family: Quicksand;
+  }
+  
+  .stats_grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat_card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .stat_value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    font-family: Quicksand;
+  }
+  
+  .stat_label {
+    color: #6b7280;
+    margin: 0;
+    font-family: Quicksand;
+  }
+  
+  .empty_state {
+    text-align: center;
+    padding: 3rem 0;
+  }
+  
+  .empty_state_image {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+  
+  .empty_state_image img {
+    width: 16rem;
+  }
+  
+  .empty_state h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: Quicksand;
+  }
+  
+  .browse_button {
+    background-color: #EF4444;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 24px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: Quicksand;
+  }
+  
+  /* Product Grid Styles */
+  .product_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .product {
+    width: 201px;
+    cursor: pointer;
+  }
+  
+  .thumbnail {
+    width: 201px;
+    height: 201px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+    object-position: top;
+  }
+  
+  .product_info .product_name {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 28px;
+    color: #121212;
+    margin: 0;
+    font-family: Quicksand;
+  }
+  
+  .product_info .product_price {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #121212;
+    margin: 0;
+    font-family: Quicksand;
+  }
+  
+  .product_info .location {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    color: #505050;
+    margin: 0;
+    font-family: Quicksand;
+  }
+  
+  @media (max-width: 575.98px) {
+    .product_container {
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+    
+    .product {
+      width: 160px;
+    }
+    
+    .thumbnail {
+      width: 160px;
+      height: 160px;
+    }
+    
+    .product_info .product_name {
+      font-size: 14px;
+      line-height: normal;
+    }
+    
+    .product_info .product_price {
+      font-size: 16px;
+    }
+    
+    .product_info .location {
+      font-size: 14px;
+    }
+  
+    .stats_grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .sidebar {
+      width: 200px;
+    }
+  }
+
+  /* Add these new styles to your existing Dashboard.css */
+
+.settings_container {
+  max-width: 800px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.settings_section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.settings_section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.section_title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-family: Quicksand;
+  color: #374151;
+}
+
+.profile_image_section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile_image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.change_picture_btn {
+  background-color: #EF4444;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: Quicksand;
+}
+
+.settings_form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form_group label {
+  font-weight: 500;
+  color: #374151;
+  font-family: Quicksand;
+}
+
+.form_group input,
+.form_group textarea {
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-family: Quicksand;
+}
+
+.form_group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.save_btn {
+  background-color: #EF4444;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: Quicksand;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  width: fit-content;
+}
+
+.save_btn:hover {
+  background-color: #DC2626;
+}
+
+.active {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+@media (max-width: 575.98px) {
+  .settings_container {
+    padding: 1rem;
+  }
+
+  .profile_image_section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .save_btn {
+    width: 100%;
+  }
+}

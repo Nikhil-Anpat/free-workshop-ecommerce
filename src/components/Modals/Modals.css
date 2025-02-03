@@ -1,0 +1,611 @@
+/** @format */
+
+.login-container-modal {
+  /* padding: 0.8rem; */
+}
+
+.login-modal-top {
+  position: relative;
+}
+
+.login-modal-top h6 {
+  font-weight: 900;
+  font-size: 34px;
+  line-height: 24.6px;
+  color: #000000;
+  margin: 0;
+  text-align: center;
+}
+
+.login-modal-top p {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24.6px;
+  color: #000000;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.login-modal-top svg {
+  font-size: 28px;
+  color: #000000;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.login-modal-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-modal-image {
+  width: 115px;
+  height: 114px;
+  overflow: hidden;
+}
+
+.login-modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login-modal-face {
+  width: 100%;
+  height: 56px;
+  border-radius: 100px;
+  background: #156ad9;
+  cursor: pointer;
+  position: relative;
+}
+
+.login-modal-face p {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.6px;
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.login-modal-face svg {
+  font-size: 30px;
+  color: #ffffff;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+
+.login-modal-google {
+  width: 100%;
+  height: 56px;
+  border-radius: 100px;
+  background: #4c8bf5;
+  position: relative;
+  cursor: pointer;
+}
+
+.login-modal-google p {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.6px;
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.login-modal-google svg {
+  font-size: 30px;
+  color: #ffffff;
+  background-color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+
+.login-modal-apple {
+  width: 100%;
+  height: 56px;
+  border-radius: 100px;
+  background: transparent;
+  border: 2px solid #000000;
+  position: relative;
+  cursor: pointer;
+}
+
+.login-modal-apple p {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.6px;
+  color: #000000;
+  margin: 0;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.login-modal-apple svg {
+  font-size: 30px;
+  color: #000000;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+
+.login-modal-email {
+  width: 100%;
+  height: 56px;
+  border-radius: 100px;
+  background: transparent;
+  border: 2px solid #e25845;
+  position: relative;
+  cursor: pointer;
+}
+
+.login-modal-email p {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.6px;
+  color: #e25845;
+  margin: 0;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.login-modal-email svg {
+  font-size: 30px;
+  color: #e25845;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+
+.login-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-modal-content p {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24.6px;
+  color: #585858;
+  margin: 0;
+  text-align: center;
+}
+
+.login-modal-sinup-btn {
+  width: 100%;
+  height: 56px;
+  border-radius: 100px;
+  background: #e25845;
+  cursor: pointer;
+}
+
+.login-modal-sinup-btn p {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.6px;
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.login-modal-login-btn {
+  width: 100%;
+  height: 56px;
+  border-radius: 100px;
+  border: 2px solid #e25845;
+  cursor: pointer;
+}
+
+.login-modal-login-btn p {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.6px;
+  color: #e25845;
+  margin: 0;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.login-modal-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.login-modal-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.login-modal-input label {
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 24.6px;
+  color: #000000;
+  margin: 0;
+  display: flex;
+}
+
+.login-modal-input-in {
+  width: 100%;
+  height: 56px;
+  border-radius: 10px;
+  border: 2px solid #e25845;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.login-modal-input-in span {
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 24.6px;
+  color: #000000;
+  margin: 0;
+  border-bottom: 1px solid #000000;
+  cursor: pointer;
+}
+
+.login-modal-input-in input {
+  flex: 1;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24.6px;
+  color: #000000;
+  margin: 0;
+}
+
+.login-modal-login-btn {
+}
+
+.login-modal-button button {
+  width: 100%;
+  height: 46px;
+  border-radius: 100px;
+  background: #e25845;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.6px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.login-modal-button button:disabled {
+  background-color: #c7c7c7;
+  cursor: not-allowed;
+}
+
+.login-modal-button p {
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 24.6px;
+  color: #e25845;
+  margin: 0;
+  text-align: center;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.locationget-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.location-img {
+}
+
+.locationget-modal h3 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  color: #1e1e1e;
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.locationget-modal span {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+  margin: 0;
+}
+
+.locationget-modal input {
+  width: 70%;
+  height: 45px;
+  border-radius: 10px;
+  background: #c2c2c247;
+  outline: none;
+  border: none;
+  text-align: center;
+}
+
+.locationget-modal input::placeholder {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #8d8d8d;
+  margin: 0;
+}
+
+.location-btn-modal {
+  width: auto;
+  height: auto;
+  padding: 14px 94px 14px 94px;
+  border-radius: 10px;
+  border: 1px solid #e25845;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.location-btn-modal p {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  color: #e25845;
+  margin: 0;
+}
+
+.location-btn-modal svg {
+  font-size: 16px;
+  color: #e25845;
+}
+
+.category-container-modal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-modal-div {
+  padding: 10px;
+  border-radius: 100px;
+  border: 1px solid #aaaaaa;
+  cursor: pointer;
+}
+
+.category-modal-div.selected {
+  background-color: #f04e31;
+  color: white;
+  border: 1px solid #f04e31;
+}
+
+.category-modal-div.selected p {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.category-modal-div p {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+.delete-modal {
+}
+
+.delete-modal h6 {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 52px;
+  text-align: center;
+  color: #000000e5;
+  margin: 0;
+}
+
+.delete-modal-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.delete-modal-btns button:first-child {
+  width: 104px;
+  height: 50px;
+  border-radius: 44px;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  color: #ffffff;
+  margin: 0;
+  background: #e25845;
+}
+
+.delete-modal-btns button:last-child {
+  width: 104px;
+  height: 50px;
+  border-radius: 44px;
+  border: 1px solid #e25845;
+  outline: none;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  color: #e25845;
+  margin: 0;
+  background: transparent;
+}
+
+.delete-modal-final {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.delete-modal-final p {
+  font-weight: 500;
+  font-size: 30px;
+  text-align: center;
+  color: #000000b2;
+  margin: 0;
+}
+
+.delete-modal-gif {
+  width: 126px;
+  height: 119px;
+  overflow: hidden;
+}
+
+.delete-modal-gif img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==== sidebar canvas ===== */
+.sidebar-canvas {
+  height: 100%;
+  padding: 20px;
+}
+.sidebar-canvas .close_btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.sidebar-canvas .close_btn svg {
+  cursor: pointer;
+  font-size: 20px;
+  color: #e25845;
+}
+
+.sidebar-canvas .remaining_content {
+  margin-top: 20px;
+}
+.sidebar-canvas .remaining_content .search_container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  flex-direction: column;
+}
+.sidebar-canvas .remaining_content .search_container .free_shipping span {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: Quicksand !important;
+  color: #e25845;
+}
+
+.sidebar-canvas .remaining_content .search_container .search_bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #121212;
+  padding: 4px 10px;
+  border-radius: 50px;
+  outline: none;
+  width: 100%;
+}
+.sidebar-canvas .remaining_content .search_container .search_bar input {
+  flex: 1;
+  border: none;
+  border-right: 1px solid #e2e2e2;
+  outline: none;
+  font-size: 14px;
+  font-family: Quicksand !important;
+  color: #121212;
+  font-weight: 500;
+  margin: 0;
+}
+.sidebar-canvas .remaining_content .search_container .search_bar select {
+  width: 100px;
+  outline: none;
+  border: none;
+  text-align: center;
+  color: #121212;
+  font-family: Quicksand !important;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 0;
+}
+.sidebar-canvas .remaining_content .search_container .search_bar .search_icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #e25845;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  cursor: pointer;
+}
+.sidebar-canvas
+  .remaining_content
+  .search_container
+  .search_bar
+  .search_icon
+  svg {
+  color: #fff;
+}
+.sidebar-canvas .remaining_content .social_links {
+  margin-top: 20px;
+}
+.sidebar-canvas .remaining_content .social_links ul {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-canvas .remaining_content .social_links ul li a {
+  font-size: 15px;
+  color: #121212;
+  font-family: Quicksand !important;
+  text-decoration: none;
+  font-weight: 600;
+}
+.sidebar-canvas .remaining_content .social_links ul li.active a {
+  font-size: 20px;
+  font-weight: 900;
+}
+.sidebar-canvas .remaining_content .social_links .login_btn {
+  margin-top: 20px;
+  background-color: #e25845;
+  border: 1px solid #e25845;
+  padding: 10px;
+  width: 100%;
+  outline: none;
+  color: #fff;
+  font-family: Quicksand !important;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 5px;
+}
+/* ======================== */

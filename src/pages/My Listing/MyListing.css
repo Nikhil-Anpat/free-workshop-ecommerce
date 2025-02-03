@@ -1,0 +1,108 @@
+/** @format */
+
+.mylisting-div {
+  width: auto;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0px 0px 8px 0px #00000040;
+  background: #ffffff;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.mylisting-details-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: auto;
+  height: auto;
+}
+
+.mylisting-details-image {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mylisting-details-image h6 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 21px;
+  color: #000000;
+  margin: 0;
+  font-family: Montserrat;
+}
+
+.mylisting-details-img {
+  width: 347.58px;
+  height: 450px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.mylisting-details-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.mylisting-details-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.mylisting-details-title h4 {
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 21px;
+  color: #8492a6;
+  margin: 0;
+  font-family: Quicksand;
+}
+
+.mylisting-details-iconss {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.mylisting-details-iconss svg {
+  font-size: 25px;
+  color: #e25845;
+  cursor: pointer;
+}
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #E25845;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.no-listings {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}

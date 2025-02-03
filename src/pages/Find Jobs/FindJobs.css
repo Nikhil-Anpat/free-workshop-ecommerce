@@ -1,0 +1,227 @@
+/** @format */
+
+.findjob-container {
+  width: 90%;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.findjob-jobs {
+  margin-top: 2rem;
+}
+
+.findjob-jobs-location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.findjob-jobs-location h6 {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 33px;
+  color: #e25845;
+  margin: 0;
+}
+
+.findjob-jobs-location svg {
+  font-size: 28px;
+  color: #e25845;
+}
+
+.findjob-jobs-div {
+  margin-top: 1.5rem;
+}
+
+.findjob-job {
+  border-radius: 16px;
+  padding: 1rem;
+  border: 1px solid #dfdfdf;
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.findjob-job-image {
+  width: 45%;
+  height: 242px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.findjob-job-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.findjob-job-right-btn {
+  width: 150px;
+  height: auto;
+  padding: 10px;
+  border-radius: 4px;
+  background: #e2584533;
+}
+
+.findjob-job-right-btn h6 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  color: #e25845;
+  margin: 0;
+  text-align: center;
+}
+
+.findjob-job-right h4 {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 38px;
+  color: #121212;
+  margin: 0;
+  margin-top: 1rem;
+}
+
+.findjob-job-right p {
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 38px;
+  color: #121212;
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.findjob-job-right h5 {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 33px;
+  color: #121212;
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.jobdetails-first {
+  border-top: 1px solid #a0a0a0;
+  border-bottom: 1px solid #a0a0a0;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.jobdetails-first-img {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: #d9d9d9;
+}
+
+.jobdetails-first-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.jobdetails-first-right h6 {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 38px;
+  color: #000000;
+  margin: 0;
+}
+
+.jobdetails-first-right p {
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 29px;
+  color: #000000;
+  margin: 0;
+  margin-top: 0.8rem;
+}
+
+.jobdetails-second {
+  margin-bottom: 1rem;
+}
+
+.jobdetails-second h6 {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 38px;
+  color: #000000;
+  margin: 0;
+}
+
+.jobdetails-second-divs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.jobdetails-second-divs p {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 33px;
+  color: #000000;
+  margin: 0;
+}
+
+.jobdetails-btn {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.jobdetails-btn button {
+  width: 50%;
+  padding: 10px;
+  border-radius: 80px;
+  background: #e25845;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 43px;
+  color: #ffffff;
+  margin: 0;
+  cursor: pointer;
+}
+
+.jobdetails-jobs-head {
+  margin-top: 1rem;
+}
+
+.jobdetails-jobs-head h5 {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 38px;
+  color: #000000;
+  margin: 0;
+}
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  width: 100%;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.no-jobs-found {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}

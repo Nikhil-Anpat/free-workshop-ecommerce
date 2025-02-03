@@ -1,0 +1,107 @@
+/** @format */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Lato";
+  font-family: "Lato";
+  /* Changed font name to match the font being loaded */
+  src: url("/assets/fonts/Lato/Lato-Regular.ttf") format("truetype");
+  /* Use root-relative path */
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  /* font-family: Lato !important; */
+  margin: 0;
+  padding: 0;
+}
+
+/* code {
+  font-family: Lato !important;
+}
+
+html,
+* {
+  font-family: Lato !important;
+} */
+
+:root {
+  margin: 0;
+  padding: 0;
+}
+
+.no-data-found {
+  font-size: 18px;
+  color: #e25845;
+  font-weight: 600;
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.delete-product-modal {
+  padding: 20px;
+}
+.delete-product-modal h6 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+.delete-product-modal .btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+  align-items: center;
+}
+.delete-product-modal .btn-container button {
+  width: 120px;
+  padding: 8px;
+  font-size: 14px;
+  margin: 0;
+  border-radius: 50px;
+  outline: none;
+}
+.delete-product-modal .btn-container button.remove-btn {
+  border: 1px solid #e25845;
+  background-color: #e25845;
+  color: #fff;
+}
+.delete-product-modal .btn-container button.outline-btn {
+  border: 1px solid #e25845;
+  background-color: transparent;
+  color: #e25845;
+}
+
+.success-delete-product-modal {
+  padding: 20px;
+}
+.success-delete-product-modal .gif {
+  width: 150px;
+  display: block;
+  margin: auto;
+}
+
+.success-delete-product-modal h6 {
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ==== media queries ==== */
+@media (min-width: 1600px) {
+}
+@media (min-width: 1200px) {
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+@media (max-width: 575.98px) {
+}
+/* ====================== */
