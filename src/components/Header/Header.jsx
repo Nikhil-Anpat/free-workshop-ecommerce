@@ -12,6 +12,7 @@ import {
   LoginModalSecond,
   LoginModalsignup,
   SidebarCanvas,
+  CurrentLocationModel,
 } from "../Modals/Modals";
 import { useEffect, useState } from "react";
 import { getApi } from "../../Repository/Api";
@@ -40,6 +41,7 @@ const Header = () => {
   const location = useLocation();
   const [openCanvas, setOpenCanvas] = useState(false);
   const [openForgot, setForgot] = useState(false);
+  const [showLocationModel, setShowLocationModel] = useState(false);
 
   const fetchProfile = () => {
     getApi(endPoints.auth.getProfile, {
@@ -68,11 +70,11 @@ const Header = () => {
   };
 
   const handleSearch = () => {
-    const currentUrlParams = new URLSearchParams(window.location.search); // Get existing query parameters
-    currentUrlParams.set("search", searchQuery); // Add or update the "search" query parameter
+    const currentUrlParams = new URLSearchParams(window.location.search); 
+    currentUrlParams.set("search", searchQuery);
 
-    const newUrl = `${window.location.pathname}?${currentUrlParams.toString()}`; // Construct the new URL
-    navigate(newUrl); // Navigate to the updated URL
+    const newUrl = `${window.location.pathname}?${currentUrlParams.toString()}`;
+    navigate(newUrl);
   };
 
   const toggle = () => {
@@ -117,6 +119,28 @@ const Header = () => {
     navigate("/");
   }
 
+  const handleNearbyClick = () => {
+    setShow1(false);
+    setShow2(false);
+    setShow3(false);
+    setForgot(false);
+    setShowLocationModel(true);
+  };
+
+  const [locationCurrent, setLocationCurrent] = useState("");
+
+  useEffect(() => {
+    const storedLocation = sessionStorage.getItem("location");
+    if (storedLocation) {
+      setLocationCurrent(storedLocation);
+    }
+  }, []);
+
+  const handleLocationUpdate = (newLocation) => {
+    setLocationCurrent(newLocation);
+    sessionStorage.setItem("location", newLocation);
+  };
+
   return (
     <>
       <SidebarCanvas
@@ -150,6 +174,12 @@ const Header = () => {
 
       <ForgotPassword show={openForgot} onHide={() => setForgot(false)} />
 
+      <CurrentLocationModel
+        show={showLocationModel}
+        onHide={() => setShowLocationModel(false)}
+        onLocationUpdate={handleLocationUpdate} 
+      />
+
       <header className="navbar-container">
         <div className="navbar-top-div">
           <div className="navbar-left">
@@ -174,10 +204,15 @@ const Header = () => {
                   <IoSearch color="#FFFFFF" size={28} />
                 </div>
               </div>
-              <div className="navbar-location">
+              <div className="navbar-location" onClick={handleNearbyClick} style={{cursor:"pointer"}}>
                 <span>
                   {" "}
-                  <IoLocationSharp /> Nearby + Shipping <FaTruck />{" "}
+                  <IoLocationSharp />
+                  {/* Nearby + Shipping */}
+                  {locationCurrent
+                    ? `${locationCurrent}`
+                    : "Nearby + Shipping"}
+                  <FaTruck />{" "}
                 </span>
               </div>
             </div>

@@ -5,6 +5,9 @@ const endPoints = {
     signup: "api/v1/user/registration",
     login: "api/v1/user/login",
     getProfile: "api/v1/user/getProfile",
+    forgetPassword: "api/v1/user/forgetPassword",
+    forgotVerifyotp: "api/v1/user/forgotVerifyotp",
+    changePassword: (id = '') => `api/v1/user/changePassword/${id}`,
   },
   getCategories: "api/v1/admin/Category/allCategory",
   products: {
@@ -63,7 +66,7 @@ const endPoints = {
   },
   trust_safety: "api/v1/admin/TrustAndSafety/allTrustAndSafety",
   how_It_Works: "api/v1/admin/HowItsWork/allHowItsWork",
-  allFreeShopNews:"api/v1/admin/FreeShopNews/allFreeShopNews",
+  allFreeShopNews: "api/v1/admin/FreeShopNews/allFreeShopNews",
   aboutUs: {
     blogs: "api/v1/admin/allFreeShopNewsForWebsite",
   },
