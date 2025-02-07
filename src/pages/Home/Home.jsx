@@ -5,6 +5,8 @@ import SeachByCities from "../../components/CommonComponent/SeachByCities";
 import { getApi } from "../../Repository/Api";
 import endPoints from "../../Repository/apiConfig";
 import styles from "../../css/home.module.css";
+import {useSelector, useDispatch } from "react-redux";
+import { SET_LOCATION, selectLatitude, selectLongitude } from "../../store/locationSlice";
 
 const Home = () => {
   const [products, setProducts] = useState(null);
@@ -12,6 +14,23 @@ const Home = () => {
   const [limit, setLimit] = useState(45);
   const navigate = useNavigate();
   const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+
+    const latitude = useSelector(selectLatitude);
+    const longitude = useSelector(selectLongitude);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      console.log("latitude",latitude)
+      console.log("longitude",longitude)
+      if (searchParams.get("latitude") && searchParams.get("longitude")) {
+        dispatch(SET_LOCATION({
+          latitude: searchParams.get("latitude"),
+          longitude: searchParams.get("longitude"),
+        }));
+      }
+    }, [location.search, dispatch,latitude,longitude]);
 
   const fetchProduct = useCallback(() => {
     setLoading(true);
@@ -22,6 +41,7 @@ const Home = () => {
       page: 1,
       limit,
       ...(searchQuery && { search: searchQuery }),
+      ...(latitude && longitude && { latitude, longitude }),
     });
 
     getApi(endPoints.products.getAllProducts(queryParams.toString()), {
@@ -34,7 +54,7 @@ const Home = () => {
         setProducts(null);
       },
     });
-  }, [location.search, limit]);
+  }, [location.search, limit, latitude, longitude]);
 
   useEffect(() => {
     fetchProduct();
@@ -63,16 +83,14 @@ const Home = () => {
                 <img
                   src={product?.productImages?.[0]?.image}
                   alt={product.name}
-                  onClick={() =>
-                    navigate(`/products/?id=${product?._id}`)
-                  }
+                  onClick={() => navigate(`/products/?id=${product?._id}`)}
                 />
               </div>
               <div className={styles.product_info}>
                 <Link to={`/product/?id=${product?._id}`}>
                   <h6 className={styles.product_name}>{product.name}</h6>
                 </Link>
-                <p className={styles.location}>{product.location}</p>
+                <p className={styles.location}>{product.locationValue}</p>
               </div>
             </div>
           ))}

@@ -197,9 +197,9 @@ const ProductDetails = () => {
     }
   };
 
-  const handleAskClick = () => {
+  const handleAskClick = (ownerData) => {
     if (isLoggedIn) {
-      navigate("/chat");
+      navigate("/chat", { state: { ownerData } });
     } else {
       setShowFirstModal(true);
     }
@@ -281,7 +281,7 @@ const ProductDetails = () => {
               </p>
               <p>
                 <IoLocationSharp />
-                {response?.data?.location}
+                {response?.data?.locationValue}
               </p>
               <div className="product-details-rating">
                 {getStars(response?.data?.ratings)}
@@ -299,7 +299,7 @@ const ProductDetails = () => {
             </div>
             <div className="product-details-action-container">
               <div className="product-details-actionbtn">
-                <button onClick={handleAskClick}>Ask</button>
+                <button onClick={() => handleAskClick(response?.data?.userId)}>Ask</button>
               </div>
               <div className="product-details-actionbtn">
                 <button onClick={handleAddToCart} disabled={isAddingToCart}>

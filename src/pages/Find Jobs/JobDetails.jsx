@@ -81,7 +81,7 @@ const JobDetails = () => {
                     <h5> {response?.data?.storage} </h5>
                     <h5>
                       {response?.data?.createdAt?.slice(0, 10)} ,{" "}
-                      {response?.data?.location}
+                      {/* {response?.data?.location} */}
                     </h5>
                   </div>
                 </div>

@@ -264,8 +264,9 @@ const CartPage = () => {
               />
               <div className="cart-item-info">
                 <h3>{cartData.productId.name}</h3>
-                <p className="location">{cartData.productId.location}</p>
+                <p className="location">{cartData.productId.locationValue}</p>
                 <p className="price">$ 1</p>
+                {/* <p className="price">{cartData.price}</p> */}
                 <p className="quantity">Quantity: {cartData.quantity}</p>
               </div>
             </div>

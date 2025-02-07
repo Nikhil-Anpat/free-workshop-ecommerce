@@ -173,11 +173,12 @@
 
 .chat-container-middle-top {
   width: auto;
-  height: auto;
+  /* height: auto; */
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: sticky;
 }
 
 .chat-middle-main-div-image {
@@ -230,8 +231,9 @@
 
 .chat-main-container {
   width: auto;
-  height: auto;
+  height: 400px;
   border-radius: 10px;
+  overflow-y: auto;
 }
 
 .chat-main-time {
@@ -346,8 +348,8 @@
 }
 
 .chat-main-input {
-  width: 90%;
-  height: auto;
+  width: 100%;
+  /* height: auto; */
   padding: 10px;
   border-radius: 3px;
   border: 1px solid #dddddd;
@@ -356,6 +358,7 @@
   align-items: center;
   position: absolute;
   bottom: 2%;
+  position: sticky;
 }
 
 .chat-main-input input {

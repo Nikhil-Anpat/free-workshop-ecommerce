@@ -4,6 +4,10 @@ import { getApi, putApi } from "../../Repository/Api";
 import endPoints from "../../Repository/apiConfig";
 import { BiLoaderCircle } from "react-icons/bi";
 import MyJobs from "../../components/MyJobs/MyJobs";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LOGOUT } from "../../store/authSlice.js";
+import { CLEAR_LOCATION } from "../../store/locationSlice.js";
 
 const Dashboard = () => {
   const fileInputRef = useRef(null);
@@ -45,6 +49,18 @@ const Dashboard = () => {
         : {}),
     }));
   };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  function logoutHandler() {
+    dispatch(LOGOUT());
+    dispatch(CLEAR_LOCATION());
+    sessionStorage.removeItem("UserID");
+    sessionStorage.removeItem("location");
+    sessionStorage.removeItem("latitude");
+    sessionStorage.removeItem("longitude");
+    navigate("/");
+  }
 
   // Handle image selection
   const handleImageSelect = (e) => {
@@ -133,7 +149,7 @@ const Dashboard = () => {
         setProfileData(data.data);
 
         // Split full name into first and last name
-        const nameParts = (data.data.fullName || "").split(" ");
+        const nameParts = (data.data?.fullName || "").split(" ");
         const firstName = nameParts[0] || "";
         const lastName = nameParts.slice(1).join(" ") || "";
 
@@ -231,7 +247,7 @@ const Dashboard = () => {
               >
                 <img
                   id="profileImagePreview"
-                  src={profileData.image || "/api/placeholder/100/100"}
+                  src={profileData?.image || "/api/placeholder/100/100"}
                   alt="Profile"
                 />
                 <input
@@ -257,7 +273,7 @@ const Dashboard = () => {
                 <input
                   type="text"
                   name="firstName"
-                  value={formData.firstName}
+                  value={formData?.firstName}
                   onChange={handleInputChange}
                   placeholder="First Name"
                 />
@@ -268,7 +284,7 @@ const Dashboard = () => {
                 <input
                   type="text"
                   name="lastName"
-                  value={formData.lastName}
+                  value={formData?.lastName}
                   onChange={handleInputChange}
                   placeholder="Last Name"
                 />
@@ -279,7 +295,7 @@ const Dashboard = () => {
                 <input
                   type="email"
                   name="email"
-                  value={formData.email}
+                  value={formData?.email}
                   onChange={handleInputChange}
                   placeholder="Email"
                   disabled
@@ -291,7 +307,7 @@ const Dashboard = () => {
                 <input
                   type="tel"
                   name="phone"
-                  value={formData.phone}
+                  value={formData?.phone}
                   onChange={handleInputChange}
                   placeholder="Phone Number"
                 />
@@ -302,7 +318,7 @@ const Dashboard = () => {
                 <input
                   type="text"
                   name="latitude"
-                  value={formData.latitude}
+                  value={formData?.latitude}
                   onChange={handleInputChange}
                   placeholder="Latitude"
                 />
@@ -313,7 +329,7 @@ const Dashboard = () => {
                 <input
                   type="text"
                   name="longitude"
-                  value={formData.longitude}
+                  value={formData?.longitude}
                   onChange={handleInputChange}
                   placeholder="Longitude"
                 />
@@ -387,8 +403,8 @@ const Dashboard = () => {
           </div>
 
           <nav className="sidebar_nav">
-            <button className="nav_link">Favourites</button>
-            <button className="nav_link">Chat</button>
+            {/* <button className="nav_link">Favourites</button>
+            <button className="nav_link">Chat</button> */}
             <button
               className={`nav_link ${activeView === "myjobs" ? "active" : ""}`}
               onClick={() => setActiveView("myjobs")}
@@ -403,7 +419,9 @@ const Dashboard = () => {
             >
               Account Settings
             </button>
-            <button className="nav_link">Logout</button>
+            <button className="nav_link" onClick={logoutHandler}>
+              Logout
+            </button>
           </nav>
         </div>
       </div>

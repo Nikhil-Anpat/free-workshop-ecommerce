@@ -19,6 +19,7 @@ import { getApi } from "../../Repository/Api";
 import endPoints from "../../Repository/apiConfig";
 import { useSelector, useDispatch } from "react-redux";
 import { isAuthenticated, LOGOUT } from "../../store/authSlice.js";
+import { CLEAR_LOCATION } from "../../store/locationSlice.js";
 import notification_img from "../../assets/images/notification.png";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -70,7 +71,7 @@ const Header = () => {
   };
 
   const handleSearch = () => {
-    const currentUrlParams = new URLSearchParams(window.location.search); 
+    const currentUrlParams = new URLSearchParams(window.location.search);
     currentUrlParams.set("search", searchQuery);
 
     const newUrl = `${window.location.pathname}?${currentUrlParams.toString()}`;
@@ -116,6 +117,11 @@ const Header = () => {
 
   function logoutHandler() {
     dispatch(LOGOUT());
+    dispatch(CLEAR_LOCATION()); 
+    sessionStorage.removeItem("UserID");
+    sessionStorage.removeItem("location");
+    sessionStorage.removeItem("latitude");
+    sessionStorage.removeItem("longitude");
     navigate("/");
   }
 
@@ -177,7 +183,7 @@ const Header = () => {
       <CurrentLocationModel
         show={showLocationModel}
         onHide={() => setShowLocationModel(false)}
-        onLocationUpdate={handleLocationUpdate} 
+        onLocationUpdate={handleLocationUpdate}
       />
 
       <header className="navbar-container">
@@ -204,14 +210,16 @@ const Header = () => {
                   <IoSearch color="#FFFFFF" size={28} />
                 </div>
               </div>
-              <div className="navbar-location" onClick={handleNearbyClick} style={{cursor:"pointer"}}>
+              <div
+                className="navbar-location"
+                onClick={handleNearbyClick}
+                style={{ cursor: "pointer" }}
+              >
                 <span>
                   {" "}
                   <IoLocationSharp />
                   {/* Nearby + Shipping */}
-                  {locationCurrent
-                    ? `${locationCurrent}`
-                    : "Nearby + Shipping"}
+                  {locationCurrent ? `${locationCurrent}` : "Nearby + Shipping"}
                   <FaTruck />{" "}
                 </span>
               </div>

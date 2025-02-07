@@ -8,6 +8,9 @@ import QRcode from "../../components/CommonComponent/QRcode";
 import TrackRoute from "../../components/CommonComponent/TrackRoute";
 import { getApi } from "../../Repository/Api";
 import endPoints from "../../Repository/apiConfig";
+import { SET_LOCATION, selectLatitude, selectLongitude } from "../../store/locationSlice";
+import {useSelector, useDispatch } from "react-redux";
+
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -25,6 +28,22 @@ const ProductList = () => {
   const [loading, setLoading] = useState(true);
   const [loadingSubCategories, setLoadingSubCategories] = useState(true);
 
+  const latitude = useSelector(selectLatitude);
+  const longitude = useSelector(selectLongitude);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("latitude ProductList",latitude)
+    console.log("longitude ProductList",longitude)
+    if (searchParams.get("latitude") && searchParams.get("longitude")) {
+      dispatch(SET_LOCATION({
+        latitude: searchParams.get("latitude"),
+        longitude: searchParams.get("longitude"),
+      }));
+    }
+  }, [location.search, dispatch,latitude,longitude]);
+
+
   const fetchProducts = useCallback(() => {
     setLoading(true);
     const searchParams = new URLSearchParams(location.search);
@@ -33,6 +52,7 @@ const ProductList = () => {
       page: 1,
       limit: 45,
       categoryId: id,
+      ...(latitude && longitude && { latitude, longitude }),
     });
     if (selectedSubcategoryId) {
       queryParams.append("subCategoryId", selectedSubcategoryId?.value);
@@ -54,7 +74,7 @@ const ProductList = () => {
     if (searchQuery) {
       queryParams.append("search", searchQuery);
     }
-
+    
     getApi(endPoints.products.getAllProducts(queryParams?.toString()), {
       setResponse: (data) => {
         setResponse(data);
@@ -69,11 +89,13 @@ const ProductList = () => {
     toPrice,
     sort,
     location.search,
+    latitude,
+    longitude,
   ]);
 
   useEffect(() => {
     fetchProducts();
-  }, [fetchProducts]);
+  }, [fetchProducts, latitude,longitude,]);
 
   const fetchSubCategories = useCallback(() => {
     setLoadingSubCategories(true);
@@ -166,9 +188,7 @@ const ProductList = () => {
                         src={product?.productImages?.[0]?.image}
                         alt={product.name}
                         onClick={() =>
-                          navigate(
-                            `/products/?id=${product?._id}`
-                          )
+                          navigate(`/products/?id=${product?._id}`)
                         }
                       />
                     </div>
@@ -176,8 +196,8 @@ const ProductList = () => {
                       <Link to={`/products/?id=${product?._id}`}>
                         <h6>{product.name}</h6>
                       </Link>
-                      {/* <span>${product.price}</span> */}
-                      <p>{product.location}</p>
+                      <span>${product.price}</span>
+                      <p>{product.locationValue}</p>
                     </div>
                   </div>
                 ))}

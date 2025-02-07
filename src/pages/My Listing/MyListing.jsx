@@ -119,10 +119,10 @@ const MyListing = () => {
                         <FaClock color="#E25845" />{" "}
                         {item?.createdAt && formatDateTime(item?.createdAt)}
                       </p>
-                      {item?.location && (
+                      {item?.locationValue && (
                         <p>
                           <IoLocationSharp color="#E25845" />
-                          {item?.location}
+                          {item?.locationValue}
                         </p>
                       )}
                     </div>

@@ -24,6 +24,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { FaTruck } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google"; // Import from @react-oauth/google
+import { SET_LOCATION } from "../../store/locationSlice";
 
 const SidebarCanvas = ({ show, handleClose }) => {
   const location = useLocation();
@@ -84,7 +86,125 @@ const SidebarCanvas = ({ show, handleClose }) => {
   );
 };
 
+// const LoginModalfirst = (props) => {
+//   const dispatch = useDispatch();
+//   const [loading, setLoading] = useState(false);
+//   const [loginResponse, loginSetResponse] = useState("");
+
+//   const payload = {
+//     email: "user@gmail.com"
+//   };
+
+//   const loginHandler = (e) => {
+//     e.preventDefault();
+//     dispatch(
+//       postApiWithRedux(endPoints.auth.socialLogin, payload, {
+//         setLoading,
+//         setResponse: loginSetResponse,
+//         successMsg: "Welcome! You’ve successfully logged in.",
+//         errorMsg: "Login failed. Please check your credentials and try again.",
+//         showErr: true,
+//         dispatchFunc: [(res) => LOGIN(res)],
+//         additionalFunctions: [() => props.onHide()],
+//       })
+//     );
+//   };
+
+//   const UserID = loginResponse?.data?._id;
+//   if (UserID) {
+//     sessionStorage.setItem("UserID", UserID);
+//   }
+
+//   return (
+//     <Modal
+//       {...props}
+//       size="sl"
+//       aria-labelledby="contained-modal-title-vcenter"
+//       centered
+//     >
+//       <Modal.Body>
+//         <div className="login-container-modal">
+//           <div className="login-modal-top">
+//             <h6>Sign up / Log in</h6>
+//             <p onClick={props.onHide}>Cancel</p>
+//           </div>
+//           <div className="login-modal-div">
+//             <div className="login-modal-image">
+//               <img src={img} alt="" />
+//             </div>
+//             <div className="login-modal-face">
+//               <FaFacebook />
+//               <p>Continue with Facebook</p>
+//             </div>
+//             <div className="login-modal-google" onClick={loginHandler}>
+//               <FcGoogle />
+//               <p>Continue with Google</p>
+//             </div>
+//             <div className="login-modal-apple">
+//               <FaApple />
+//               <p>Continue with Apple</p>
+//             </div>
+//             <div className="login-modal-email" onClick={props.shownext}>
+//               <MdEmail />
+//               <p>Continue with Email</p>
+//             </div>
+//             <div className="login-modal-content">
+//               <p>
+//                 Lorem Ipsum is simply dummy text of the printing and typesetting
+//                 industry. Lorem Ipsum has been the industry's standard dummy
+//                 text ever since the 1500s
+//               </p>
+//               <p>
+//                 Lorem Ipsum is simply dummy text of the printing and typesetting
+//                 industry. Lorem Ipsum has been the industry's{" "}
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       </Modal.Body>
+//     </Modal>
+//   );
+// };
+
 const LoginModalfirst = (props) => {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [loginResponse, loginSetResponse] = useState("");
+  const [showGoogleConfirm, setShowGoogleConfirm] = useState(false);
+  const [email, setEmail] = useState("");
+
+  const payload = {
+    email,
+  };
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    setShowGoogleConfirm(true);
+  };
+
+  const confirmGoogleLogin = () => {
+    if (!email) {
+      alert("Email is required");
+      return;
+    }
+    dispatch(
+      postApiWithRedux(endPoints.auth.socialLogin, payload, {
+        setLoading,
+        setResponse: loginSetResponse,
+        successMsg: "Welcome! You’ve successfully logged in.",
+        errorMsg: "Login failed. Please check your credentials and try again.",
+        showErr: true,
+        dispatchFunc: [(res) => LOGIN(res)],
+        additionalFunctions: [() => props.onHide(), () => setShowGoogleConfirm(false),() => setEmail('')],
+      })
+    );
+  };
+
+  const UserID = loginResponse?.data?._id;
+  if (UserID) {
+    sessionStorage.setItem("UserID", UserID);
+  }
+
   return (
     <Modal
       {...props}
@@ -99,25 +219,51 @@ const LoginModalfirst = (props) => {
             <p onClick={props.onHide}>Cancel</p>
           </div>
           <div className="login-modal-div">
-            <div className="login-modal-image">
-              <img src={img} alt="" />
-            </div>
-            <div className="login-modal-face">
-              <FaFacebook />
-              <p>Continue with Facebook</p>
-            </div>
-            <div className="login-modal-google">
-              <FcGoogle />
-              <p>Continue with Google</p>
-            </div>
-            <div className="login-modal-apple">
-              <FaApple />
-              <p>Continue with Apple</p>
-            </div>
-            <div className="login-modal-email" onClick={props.shownext}>
-              <MdEmail />
-              <p>Continue with Email</p>
-            </div>
+            {showGoogleConfirm ? (
+              <div className="login-modal-input pt-4" style={{width:'100%'}}>
+                <label>Email address</label>
+                <div className="login-modal-input-in w-100" style={{width:'100%'}}>
+                  <input
+                    type="text"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    className="w-[100%]"
+                    style={{width:'100%'}}
+                  />
+                </div>
+                <div className="login-modal-button pt-3">
+                  <button type="submit" onClick={confirmGoogleLogin} className="py-2">
+                    {loading ? (
+                      <ClipLoader color="#fff" />
+                    ) : (
+                      "Continue with Google"
+                    )}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="login-modal-image">
+                  <img src={img} alt="" />
+                </div>
+                <div className="login-modal-face">
+                  <FaFacebook />
+                  <p>Continue with Facebook</p>
+                </div>
+                <div className="login-modal-google" onClick={loginHandler}>
+                  <FcGoogle />
+                  <p>Continue with Google</p>
+                </div>
+                <div className="login-modal-apple">
+                  <FaApple />
+                  <p>Continue with Apple</p>
+                </div>
+                <div className="login-modal-email" onClick={props.shownext}>
+                  <MdEmail />
+                  <p>Continue with Email</p>
+                </div>
+              </>
+            )}
             <div className="login-modal-content">
               <p>
                 Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -179,6 +325,8 @@ const LoginModallogin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loginResponse, loginSetResponse] = useState("");
+  const [passwordType, setPasswordType] = useState("password");
 
   const payload = {
     email,
@@ -190,6 +338,7 @@ const LoginModallogin = (props) => {
     dispatch(
       postApiWithRedux(endPoints.auth.login, payload, {
         setLoading,
+        setResponse: loginSetResponse,
         successMsg: "Welcome! You’ve successfully logged in.",
         errorMsg: "Login failed. Please check your credentials and try again.",
         showErr: true,
@@ -198,6 +347,11 @@ const LoginModallogin = (props) => {
       })
     );
   };
+
+  const UserID = loginResponse?.data?._id;
+  if (UserID) {
+    sessionStorage.setItem("UserID", UserID);
+  }
 
   return (
     <Modal
@@ -236,13 +390,20 @@ const LoginModallogin = (props) => {
                 <label htmlFor="">Password</label>
                 <div className="login-modal-input-in">
                   <input
-                    type="password"
+                    type={passwordType}
+                    // type="password"
                     name=""
                     id=""
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                   />
-                  <span>Show</span>
+                  {passwordType === "text" ? (
+                    <span onClick={() => setPasswordType("password")}>
+                      Hide
+                    </span>
+                  ) : (
+                    <span onClick={() => setPasswordType("text")}>Show</span>
+                  )}
                 </div>
               </div>
               <div className="login-modal-input">
@@ -777,6 +938,7 @@ const CurrentLocationModel = (props) => {
   const [allCategories, setAllCategories] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const fetchCategories = () => {
     getApi(endPoints.getCategories, {
@@ -800,22 +962,8 @@ const CurrentLocationModel = (props) => {
     }
   }, [props]);
 
-  const payload = {
-    categoryIds: [selectedCategories],
-    latitude, 
-    longitude, 
-  };
-
   const submitHandler = () => {
-    getApi(endPoints.products.getAllProducts(payload.toString()), {
-      setLoading,
-      successMsg: "Location Updated !",
-      showErr: true,
-      additionalFunctions: [
-        () => setStep(4),
-        () => setTimeout(() => props.onHide(), 2000),
-      ],
-    });
+    props.onHide();
   };
 
   useEffect(() => {
@@ -829,9 +977,10 @@ const CurrentLocationModel = (props) => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          setLatitude(latitude); 
-          setLongitude(longitude); 
+          setLatitude(latitude);
+          setLongitude(longitude);
           getAddressFromCoordinates(latitude, longitude);
+          dispatch(SET_LOCATION({ latitude, longitude }));
         },
         (err) => {
           console.log(err);
@@ -857,8 +1006,8 @@ const CurrentLocationModel = (props) => {
         const address = data.results[0].formatted_address;
         setLocation(address);
         sessionStorage.setItem("location", address);
-        sessionStorage.setItem("latitude", latitude.toString());
-        sessionStorage.setItem("longitude", longitude.toString());
+        dispatch(SET_LOCATION({ latitude, longitude }));
+
         if (props?.onLocationUpdate) {
           props?.onLocationUpdate(address);
         }
@@ -871,7 +1020,7 @@ const CurrentLocationModel = (props) => {
   const getLocationFromPincode = async (pinCode) => {
     const apiKey = import.meta.env.VITE_GOOGLE_MAP_KEY;
     const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${pinCode}&key=${apiKey}`;
-  
+
     try {
       const response = await fetch(geocodingUrl);
       const data = await response.json();
@@ -882,12 +1031,10 @@ const CurrentLocationModel = (props) => {
         setLocation(address);
         setLatitude(latitude);
         setLongitude(longitude);
-  
-        // Store the data in sessionStorage if needed
+        dispatch(SET_LOCATION({ latitude, longitude }));
+
         sessionStorage.setItem("location", address);
-        sessionStorage.setItem("latitude", latitude.toString());
-        sessionStorage.setItem("longitude", longitude.toString());
-  
+
         if (props?.onLocationUpdate) {
           props?.onLocationUpdate(address);
         }
@@ -898,14 +1045,12 @@ const CurrentLocationModel = (props) => {
       console.error("Error fetching location from pincode:", error);
     }
   };
-  
+
   useEffect(() => {
-    if (pinCode.length === 6) { // Trigger when pincode length is 6 (assuming Indian Pincode)
+    if (pinCode.length === 6) {
       getLocationFromPincode(pinCode);
     }
   }, [pinCode]);
-  
-  
 
   return (
     <Modal
@@ -924,7 +1069,7 @@ const CurrentLocationModel = (props) => {
               <h3>Where are you searching?</h3>
               <div
                 className="location-btn-modal"
-                onClick={() => getCurrentLocation()} // Get current location
+                onClick={() => getCurrentLocation()}
               >
                 <IoLocationSharp />
                 <p>Get my location</p>
@@ -956,7 +1101,7 @@ const CurrentLocationModel = (props) => {
               <button
                 style={{ marginTop: "10px" }}
                 type="button"
-                onClick={() => setStep(step + 1)} // Move to next step
+                onClick={() => setStep(step + 1)}
               >
                 Next
               </button>
@@ -980,7 +1125,7 @@ const CurrentLocationModel = (props) => {
                     className={`category-modal-div ${
                       selectedCategories.includes(item?._id) ? "selected" : ""
                     }`}
-                    onClick={() => categorySelector(item?._id)} // Select category
+                    onClick={() => categorySelector(item?._id)}
                   >
                     <p>{item?.name}</p>
                   </div>
@@ -990,8 +1135,8 @@ const CurrentLocationModel = (props) => {
             <div className="login-modal-button">
               <button
                 style={{ marginTop: "10px" }}
-                onClick={submitHandler} // Submit form with lat, lng, and selected categories
-                disabled={selectedCategories.length !== 3} // Ensure 3 categories are selected
+                onClick={submitHandler}
+                disabled={selectedCategories.length !== 3}
               >
                 {loading ? <ClipLoader color="#fff" /> : "Next"}
               </button>
@@ -1091,8 +1236,6 @@ const JObsmodal = (props) => {
     </Modal>
   );
 };
-
-
 
 export {
   LoginModalfirst,

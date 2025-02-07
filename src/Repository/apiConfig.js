@@ -8,6 +8,7 @@ const endPoints = {
     forgetPassword: "api/v1/user/forgetPassword",
     forgotVerifyotp: "api/v1/user/forgotVerifyotp",
     changePassword: (id = '') => `api/v1/user/changePassword/${id}`,
+    socialLogin:"api/v1/user/socialLogin"
   },
   getCategories: "api/v1/admin/Category/allCategory",
   products: {

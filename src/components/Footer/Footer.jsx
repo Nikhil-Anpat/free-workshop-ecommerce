@@ -13,6 +13,7 @@ import {
   LoginModalSecond,
   LoginModallogin,
   LoginModalsignup,
+  ForgotPassword,
 } from "../Modals/Modals";
 import { isAuthenticated } from "../../store/authSlice.js";
 import { useSelector } from "react-redux";
@@ -26,6 +27,7 @@ const Footer = () => {
   const [show1, setShow1] = useState(false);
   const [show2, setShow2] = useState(false);
   const [show3, setShow3] = useState(false);
+  const [openForgot, setForgot] = useState(false);
 
   // Toggle functions for login flow
   const toggle = () => {
@@ -46,29 +48,45 @@ const Footer = () => {
     setShow3(true);
   };
 
-  // Handle Post Job Click
   const handlePostJobClick = () => {
     if (isLoggedIn) {
       navigate("/post-job");
     } else {
-      setShow(true); // Open login modal if not logged in
+      setShow(true);
     }
   };
 
-   // Handle Post an Item Click
-   const handlePostItemClick = () => {
+  const handlePostItemClick = () => {
     if (isLoggedIn) {
       navigate("/post");
     } else {
-      setShow(true); // Open login modal if not logged in
+      setShow(true);
     }
+  };
+
+  const DontAccountSignup = () => {
+    setShow1(false);
+    setShow2(false);
+    setShow3(true);
+  };
+
+  const AlreadyAccountSignup = () => {
+    setShow1(false);
+    setShow2(true);
+    setShow3(false);
+  };
+
+  const ForgotPasswordToogle = () => {
+    setShow1(false);
+    setShow2(false);
+    setShow3(false);
+    setForgot(true);
   };
 
   return (
     <>
       <JObsmodal show={isOpen} onHide={() => setIsOpen(false)} />
 
-      {/* Login Modals */}
       <LoginModalfirst
         show={show}
         onHide={() => setShow(false)}
@@ -84,12 +102,17 @@ const Footer = () => {
         show={show2}
         onHide={() => setShow2(false)}
         shownext={toggle2}
+        openSignUp={DontAccountSignup}
+        openForgot={ForgotPasswordToogle}
       />
       <LoginModalsignup
         show={show3}
         onHide={() => setShow3(false)}
         shownext={toggle2}
+        openLogin={AlreadyAccountSignup}
       />
+
+      <ForgotPassword show={openForgot} onHide={() => setForgot(false)} />
 
       <div className="footer-container">
         <div className="footer-main">
